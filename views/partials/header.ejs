@@ -1,0 +1,36 @@
+<header class="main-header">
+    <!-- <div class="logo-title-wrapper">
+        <img class="main-logo" src="/pcc-logo.png" alt="PCC Logo">
+        <div class="main-title">PCC</div>
+    </div> -->
+    <div class="main-navigation">
+        <ul>
+            
+            <li><a href="/" <% if(active == "home"){ %> 
+                class="active"
+            <% } %>
+            >Home</a></li>
+            <li><a href="./team" <% if(active == "team"){ %> 
+                class="active"
+            <% } %>
+            >Team</a></li>
+            <li><a href="./events" <% if(active == "events"){ %> 
+                class="active"
+            <% } %>
+            >Events</a></li>
+            <li><a href="./contact" <% if(active == "contact"){ %> 
+                class="active"
+            <% } %>
+            >Contact Us</a></li>
+            <% if(user==null){ %>
+                <li><a href="./login"<% if(active == "login"){ %> 
+                    class="active"
+                <% } %>
+                >Login/Sign Up</a></li>
+            <% }else { %>
+                <li><a href="./logout">Logout</a></li>
+                <li><a href=""><%= user %></a></li>
+            <% } %>
+        </ul>
+    </div>
+</header>

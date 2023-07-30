@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Space+Grotesk&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    color: whitesmoke;
+    font-family: 'Space Grotesk', sans-serif;
+    user-select: none;
+}
+
+/* on smaller screen devices scale down the font size */
+@media screen and (max-width: 600px){
+    *{
+        font-size: 95%;
+    }
+}
+
+body{
+    /* background-image: url("../pcc-backgroud.jpg"); */
+    background-image: url("../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.main-container{
+    position: absolute;
+    inset: 0;
+    /* background-color: rgba(0, 0, 0, 0.332); */
+    display:flex;
+    flex-direction: column;
+}
+
+header{
+    background-color: #212121;
+    padding:8px;
+}
+
+.main-container::before{
+    position: absolute;
+    content:"";
+    
+    inset: 0;
+    z-index: -1;
+}
+.main-header{
+    width: 100%;
+    min-height: 10dvh;
+}
+.logo-title-wrapper{
+    display: flex;
+    font-size: 4.5rem;
+    justify-content: center;
+    gap:0.5em;
+    padding:.3em 0;
+}
+.main-logo{
+    width: 170px;
+}
+
+.main-navigation{
+    padding: 1em;
+    overflow: hidden;
+    height: auto;
+    vertical-align: center;
+}
+
+.main-navigation ul{
+    display:flex;
+    list-style:none;
+    justify-content:center;
+    gap:1.5em;
+    font-size:1.5rem;
+}
+.main-content{
+    overflow: auto;
+    padding: 0 13%;
+}
+
+.main-content > *{
+    position: relative;
+    /* background-color: rgb(40, 61, 61); */
+    min-height: 70dvh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-cover{
+    position: relative;
+    /* background-color: rgb(40, 61, 61); */
+    min-height: 70dvh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.main-cover-content{
+    font-size: 2rem;
+   /* flex-grow: 0; */
+    /* flex-shrink: 0; */
+}
+.some-other-content p{
+    /* background-color: rgb(36, 92, 73); */
+    min-height: 70dvh;
+    /* background-color: bisque; */
+}
+
+.active{
+    color: rgb(18, 218, 48);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+a{
+    text-decoration: none;
+    color: whitesmoke;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover{
+    color: rgb(18, 218, 48);
+}
+
+#countdown{
+    padding:10px;
+    font-size: 7rem;
+    font-weight: 600;
+    color: rgb(18, 218, 48);
+    margin:30px;
+}

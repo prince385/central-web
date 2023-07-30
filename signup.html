@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Signup</title>
+	<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+	<div class="box">
+		<form autocomplete="off">
+			<h2>Sign Up</h2>
+			<div class="inputBox">
+				<input type="text" required="required" onblur="blurFocus(0)" onfocus="onFocus(0)">
+				<span>Name</span>
+				<i></i>
+			</div>
+            <div class="inputBox">
+				<input type="email" required="required" onblur="blurFocus(1)" onfocus="onFocus(1)">
+				<span>Email</span>
+				<i></i>
+			</div>
+			<div class="inputBox" id="phone-number">
+				<input type="tel" required="required" onblur="blurFocus(2)" onfocus="onFocus(2)">
+				<span>Phone</span>
+				<i></i>
+			</div>
+
+			<div class="inputBox">
+				<input type="password" required="required" onblur="blurFocus(3)" onfocus="onFocus(3)">
+				<span>Password</span>
+				<i></i>
+			</div>
+			<div class="links">
+				<a href="#">Forgot Password ?</a>
+				<a href="./login.html">Login</a>
+			</div>
+			<input type="submit" value="Signup">
+		</form>
+	</div>
+    <script src="./login.js"></script>
+</body>
+</html>

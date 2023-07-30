@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    Box-sizing: border-box;
+}
+
+body{
+    margin:0px;
+    padding:0px;
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* font-size: 10px; */
+    /* background-position: center; */
+    /* height: 100vh; */
+    /* background-color:#414141; */
+}
+
+header{
+    background-color: #212121;
+    padding:8px;
+}
+
+header nav{
+    display: inline-block;
+}
+
+#logo img{
+    height:15px;
+}
+
+#right-nav{
+    float:right;
+    margin-right: 5px;
+}
+
+header nav span{
+    float:left;
+}
+
+
+header span a{
+    padding:10px;
+    text-decoration: none;
+    font-size:1.1em;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition:0.4s;
+}
+
+header span a:hover{
+    background-color: green;
+}
+
+#contact-card{
+    display:grid;
+    /* center */
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    /* margin:10px; */
+    /* border: #212121 2px solid; */
+}
+
+#contact-card >*{
+    margin:30px 10%;
+    /* padding:50px; */
+    background-color: #21212161;
+    border-radius: 25px;
+    /* padding:10%; */
+    font-family: inter;
+    font-size:2rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight:200;
+    /* background opacity 0.4 */
+    /* background-color: rgba(0,0,0,0.4); */
+}
+
+#contact-card span{
+    /* margin-bottom:1.5em;
+    margin-top: 1.5em; */
+    margin: 1.5em auto;
+    justify-content: center;
+}
+
+.contact-card-content{
+    padding: 5% 0;
+    /* filter: drop-shadow(0 0 0.1rem #212121); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contact-card-content>*{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* display:flex; */
+}
+
+.contact-card-content> div{
+    margin: 0 0 5% 10%;
+}
+
+.mail img{
+    width:15%;
+    height:auto;
+    margin: 20px;
+    border-radius:50%;
+}
+
+.mail a{
+    text-decoration: none;
+    color: #fff;
+    /* font-size: 1em; */
+    font-weight: 200;
+    font-family: inter;
+    text-transform: lowercase;
+}
+
+#wrapper > span{
+    color: #fff;
+    font-size: 2.5em;
+    text-align: center;
+    display:block;
+    font-family: inter;
+    text-transform: uppercase;
+    font-weight: 200;
+    margin: 30px;
+}
+
+#footer{
+    padding: 10px;
+    text-align: center;
+}
+
+#footer a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 200;
+    font-family: inter;
+    text-transform: uppercase;
+}
+
+#footer img{
+    width: 40px;
+    height: auto;
+    margin: 10px;
+}
+
+#footer a:hover img{
+    transform: scale(1.2);
+    background:url(./Images/fbc.png);
+}
+
+@media screen and (max-width: 1200px) {
+    body{
+        font-size:0.9em;
+    }
+
+    .contact-card-content > *{
+        font-size:0.9em;
+    }
+
+    /* .contact-card-content > * > *{
+        font-size:0.9em;
+    } */
+}
+
+@media screen and (max-width: 1085px) {
+    body{
+        font-size:0.9em;
+        height:100vh;
+    }
+
+    .contact-card-content > *{
+        font-size:0.8em;        
+    }
+}
+
+@media screen and (max-width: 970px) {
+    body{
+        font-size:0.9em;
+    }
+
+    .contact-card-content > *{
+        font-size:0.7em;        
+    }
+}
+
+@media screen and (max-width: 890px) {
+    body{
+        font-size:0.9em;
+    }
+
+    .contact-card-content > *{
+        font-size:0.6em;
+        font-weight:600;
+    }
+
+    .mail a{
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    body{
+        font-size:0.9em;
+        font-size-adjust: 0.75;
+    }
+
+    .contact-card-content{
+        font-size:0.5em;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    body{
+        font-size:0.9em;
+    }
+
+    .contact-card-content > *{
+        font-size:0.5em;        
+    }
+}
+
+@media screen and (max-width: 680px) {
+    body{
+        font-size:0.9em;
+        background-size:auto;
+    }
+    #contact-card{
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card-content > *{
+        font-size:0.7em;
+        font-weight: 600;
+        margin:0px;
+        padding:0;
+    }
+
+    .mail a{
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body{
+        font-size:0.9em;
+    }
+
+    .contact-card-content > *{
+        font-size:0.7em;
+        font-weight: 600;
+        margin:0px;
+        padding:0;
+        
+    }
+
+    .mail a{
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    body{
+        font-size:0.5em;
+    }
+
+    .contact-card-content > *{
+        font-size:0.5em;
+        margin:0px;
+        padding:0;
+        
+    }
+}
+
+@media screen and (max-width: 340px) {
+    body{
+        font-size:0.5em;
+    }
+
+    .contact-card-content > *{
+        font-size:0.4em;
+        
+    }
+    .contact-card-content> div{
+        margin: auto;
+    }
+}
