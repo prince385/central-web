@@ -10,15 +10,15 @@
     <%- include('partials/header') %>
 	<div class="box-wrapper">
 		<div class="box">
-			<form autocomplete="off">
+			<form autocomplete="off" action="/login" method="post">
 				<h2>Sign In</h2>
 				<div class="inputBox">
-					<input type="text" required="required" onblur="blurFocus(0)" onfocus="onFocus(0)">
+					<input name="roll" type="text" required="required" onblur="blurFocus(0)" onfocus="onFocus(0)">
 					<span>Roll No</span>
 					<i></i>
 				</div>
 				<div class="inputBox">
-					<input type="password" required="required" onblur="blurFocus(1)" onfocus="onFocus(1)">
+					<input name="password" type="password" required="required" onblur="blurFocus(1)" onfocus="onFocus(1)">
 					<span>Password</span>
 					<i></i>
 				</div>

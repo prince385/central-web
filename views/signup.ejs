@@ -9,30 +9,30 @@
 <body style="background-image: url('./pcc-backgroud.jpg');">
     <%- include('partials/header') %>
 	<div class="box">
-		<form autocomplete="off">
+		<form autocomplete="off" action="/signup" method="post">
 			<h2>Sign Up</h2>
 			<div class="inputBox">
-				<input type="text" required="required" onblur="blurFocus(0)" onfocus="onFocus(0)">
+				<input name="username" type="text" required="required" onblur="blurFocus(0)" onfocus="onFocus(0)">
 				<span>Name</span>
 				<i></i>
 			</div>
 			<div class="inputBox">
-				<input type="text" required="required" onblur="blurFocus(1)" onfocus="onFocus(1)">
+				<input name="roll" type="text" required="required" onblur="blurFocus(1)" onfocus="onFocus(1)">
 				<span>Roll No</span>
 				<i></i>
 			</div>
 			<div class="inputBox">
-				<input type="email" required="required" onblur="blurFocus(2)" onfocus="onFocus(2)">
+				<input name="email" type="email" required="required" onblur="blurFocus(2)" onfocus="onFocus(2)">
 				<span>Email</span>
 				<i></i>
 			</div>
 			<div class="inputBox" id="phone-number">
-				<input type="tel" required="required" onblur="blurFocus(3)" onfocus="onFocus(3)">
+				<input name="phone" type="tel" required="required" onblur="blurFocus(3)" onfocus="onFocus(3)">
 				<span>Phone</span>
 				<i></i>
 			</div>
 			<div class="inputBox">
-				<input type="password" required="required" onblur="blurFocus(4)" onfocus="onFocus(4)">
+				<input name="password" type="password" required="required" onblur="blurFocus(4)" onfocus="onFocus(4)">
 				<span>Password</span>
 				<i></i>
 			</div>
