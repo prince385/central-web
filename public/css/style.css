@@ -132,3 +132,10 @@ a:hover{
     color: rgb(18, 218, 48);
     margin:30px;
 }
+
+#sessUser{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(68, 210, 242);
+    
+}

@@ -24,7 +24,7 @@ const signup = async (req,res)=>{
             phone: phone
         });
 
-        const token = jwt.sign({email:newUser.email,roll:newUser.roll,id:newUser._id},process.env.SECRET_KEY);
+        const token = jwt.sign({roll:user.roll,name:user.username,id:user._id},process.env.SECRET_KEY,{expiresIn:"2m"});
         res.status(200).json({user:newUser,token:token});
     }catch(error){
         console.log(error);
@@ -42,8 +42,13 @@ const login = async (req,res)=>{
     if(!isPasswordCorrect){
         return res.status(400).json({msg: "Invalid credentials"});
     }
-    const token = jwt.sign({email:user.email,roll:user.roll,id:user._id},process.env.SECRET_KEY);
-    res.status(200).json({user:user,token:token});
+    const token = jwt.sign({roll:user.roll,name:user.username,id:user._id},process.env.SECRET_KEY,{expiresIn:"2m"});
+    console.log("token at login: ",token);
+    const verifyToken = jwt.verify(token,process.env.SECRET_KEY);
+    console.log(verifyToken);
+    res.cookie("token",token,{httpOnly:true});
+    // res.status(200).json({token:token});
+    res.status(200).redirect("/")
 }
 
 module.exports = {login,signup};

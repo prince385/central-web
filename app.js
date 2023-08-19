@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const {signup,login} = require("./userControls.js");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 
 dotenv.config();
 const app = express();
@@ -11,7 +13,7 @@ app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/public"));
-
+app.use(cookieParser());
 
 app.get("/index",(req,res)=>{
     res.redirect('/');
@@ -19,14 +21,52 @@ app.get("/index",(req,res)=>{
 
 app.get("/",function(req,res){
     // res.sendFile(__dirname + "/index.html");
-    res.render("index",{user: null,active: "home"});
-    
+    // console.log(req.json());
+    let user = null,token=null;
+    if(req.cookies.token){
+        token=req.cookies.token;
+        try{
+            const decodedToken = jwt.verify(token,process.env.SECRET_KEY);
+            user = decodedToken.name;
+            console.log("AT HOME: ",decodedToken);
+        }catch{
+            res.clearCookie("token");
+            res.redirect("/");
+        }
+    }
+    // res.cookie("token",token,{httpOnly:true});
+    res.render("index",{user: user,active: "home"});
 });
 
 app.get("/events",function(req,res){
     // res.sendFile(__dirname+"/events.html");
-    res.render("events",{user: null,active: "events"});
+    let user = null,token=null;
+    if(req.cookies.token){
+        token=req.cookies.token;
+        user = jwt.verify(token,process.env.SECRET_KEY).name;
+    }
+    res.render("events",{user: user,active: "events"});
 });
+
+app.get("/contact",(req,res)=>{
+    // res.sendFile(__dirname + "/contact.html");
+    let user = null,token=null;
+    if(req.cookies.token){
+        token=req.cookies.token;
+        user = jwt.verify(token,process.env.SECRET_KEY).name;
+    }
+    res.render("contact",{user: user,active: "contact"});
+})
+
+app.get("/team",(req,res)=>{
+    // res.sendFile(__dirname + "/team-card.html");
+    let user = null,token=null;
+    if(req.cookies.token){
+        token=req.cookies.token;
+        user = jwt.verify(token,process.env.SECRET_KEY).name;
+    }
+    res.render("team",{user: user,active: "team"});
+})
 
 app.get("/login",function(req,res){
     // res.sendFile(__dirname + "/login.html");
@@ -38,19 +78,14 @@ app.get("/signup",(req,res)=>{
     res.render("signup",{user: null,active: "login"});
 });
 
+app.get("/logout",(req,res)=>{
+    res.clearCookie("token");    
+    res.redirect("/");
+})
+
 app.post("/signup",signup)
 
 app.post("/login",login)
-
-app.get("/team",(req,res)=>{
-    // res.sendFile(__dirname + "/team-card.html");
-    res.render("team",{user: null,active: "team"});
-})
-
-app.get("/contact",(req,res)=>{
-    // res.sendFile(__dirname + "/contact.html");
-    res.render("contact",{user: null,active: "contact"});
-})
 
 mongoose.connect(process.env.MONGO_DB,{useNewUrlParser: true,useUnifiedTopology: true})
 .then(()=>{
