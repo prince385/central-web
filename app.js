@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const {signup,login} = require("./userControls.js");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
+const auth = require("./auth.js");
 
 dotenv.config();
 const app = express();
@@ -19,62 +20,35 @@ app.get("/index",(req,res)=>{
     res.redirect('/');
 });
 
-app.get("/",function(req,res){
-    // res.sendFile(__dirname + "/index.html");
-    // console.log(req.json());
-    let user = null,token=null;
-    if(req.cookies.token){
-        token=req.cookies.token;
-        try{
-            const decodedToken = jwt.verify(token,process.env.SECRET_KEY);
-            user = decodedToken.name;
-            console.log("AT HOME: ",decodedToken);
-        }catch{
-            res.clearCookie("token");
-            res.redirect("/");
-        }
-    }
-    // res.cookie("token",token,{httpOnly:true});
+app.get("/",auth,function(req,res){
+    let user = null;
+    user = req.user;
     res.render("index",{user: user,active: "home"});
 });
 
-app.get("/events",function(req,res){
-    // res.sendFile(__dirname+"/events.html");
-    let user = null,token=null;
-    if(req.cookies.token){
-        token=req.cookies.token;
-        user = jwt.verify(token,process.env.SECRET_KEY).name;
-    }
+app.get("/events",auth,function(req,res){
+    let user = null;
+    user = req.user;
     res.render("events",{user: user,active: "events"});
 });
 
-app.get("/contact",(req,res)=>{
-    // res.sendFile(__dirname + "/contact.html");
-    let user = null,token=null;
-    if(req.cookies.token){
-        token=req.cookies.token;
-        user = jwt.verify(token,process.env.SECRET_KEY).name;
-    }
+app.get("/contact",auth,(req,res)=>{
+    let user = null;
+    user = req.user;
     res.render("contact",{user: user,active: "contact"});
 })
 
-app.get("/team",(req,res)=>{
-    // res.sendFile(__dirname + "/team-card.html");
-    let user = null,token=null;
-    if(req.cookies.token){
-        token=req.cookies.token;
-        user = jwt.verify(token,process.env.SECRET_KEY).name;
-    }
+app.get("/team",auth,(req,res)=>{
+    let user = null;
+    user = req.user;
     res.render("team",{user: user,active: "team"});
 })
 
 app.get("/login",function(req,res){
-    // res.sendFile(__dirname + "/login.html");
     res.render("login",{user: null,active: "login"})
 });
 
 app.get("/signup",(req,res)=>{
-    // res.sendFile(__dirname + "/signup.html");
     res.render("signup",{user: null,active: "login"});
 });
 
