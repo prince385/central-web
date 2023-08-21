@@ -1,6 +1,7 @@
 const userModel = require("./models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
 
 const signup = async (req,res)=>{
     const {username,password,email,roll,phone} = req.body;
@@ -24,8 +25,9 @@ const signup = async (req,res)=>{
             phone: phone
         });
 
-        const token = jwt.sign({roll:user.roll,name:user.username,id:user._id},process.env.SECRET_KEY,{expiresIn:"2m"});
-        res.status(200).json({user:newUser,token:token});
+        const token = jwt.sign({roll:newUser.roll,name:newUser.username,id:newUser._id},process.env.SECRET_KEY,{expiresIn:process.env.TOKEN_EXPIRY_DURATION});
+        res.cookie("token",token,{httpOnly:true});
+        res.status(200).redirect("/");
     }catch(error){
         console.log(error);
         res.status(500).json({msg:"something went wrong..."});
@@ -42,7 +44,7 @@ const login = async (req,res)=>{
     if(!isPasswordCorrect){
         return res.status(400).json({msg: "Invalid credentials"});
     }
-    const token = jwt.sign({roll:user.roll,name:user.username,id:user._id},process.env.SECRET_KEY,{expiresIn:"2m"});
+    const token = jwt.sign({roll:user.roll,name:user.username,id:user._id},process.env.SECRET_KEY,{expiresIn:process.env.TOKEN_EXPIRY_DURATION});
     console.log("token at login: ",token);
     const verifyToken = jwt.verify(token,process.env.SECRET_KEY);
     console.log(verifyToken);

@@ -7,11 +7,9 @@ function authenticate(req,res,next){
         jwt.verify(token,process.env.SECRET_KEY,(err,decodedToken)=>{
             if(err){
                 res.clearCookie("token");
-                res.redirect("/");
+            }else{
+                user = decodedToken.name;
             }
-            console.log("Decoded TOken: ",decodedToken)
-            user = decodedToken.name;
-            console.log("AT HOME: ",decodedToken);
         });
     }
     req.user=user;
